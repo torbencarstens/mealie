@@ -1,0 +1,39 @@
+namespace: recipes
+
+deployment:
+  name: mealie
+  image: hkotel/mealie:v0.4.3
+  imagePullPolicy: Always
+  revisionHistoryLimit: 1
+  replicas: 1
+  labels:
+    app: backend
+  ports:
+    - 80
+  requests:
+    cpu: 100m
+    memory: 100Mi
+  limit:
+    cpu: 300m
+    memory: 300Mi
+
+volume:
+  sqlite:
+    name: sqlite-data
+    path: /app/data
+
+claim:
+  sqlite:
+    name: mealie-db
+    size: 1Gi
+    accessMode: ReadWriteOnce
+
+secret:
+  name: mealie
+  password: __PASSWORD__
+
+configmap:
+  name: mealie
+  email: mealie@carstens.tech
+  timezone: Europe/Zurich
+  tokenTime: 168

@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: {{ .Values.claim.sqlite.name }}
+  namespace: {{ .Values.namespace }}
+spec:
+  accessModes:
+    - {{ .Values.claim.sqlite.accessMode }}
+  resources:
+    requests:
+      storage: {{ .Values.claim.sqlite.size }}

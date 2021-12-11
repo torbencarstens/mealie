@@ -12,9 +12,9 @@ jobs:
     steps:
       - uses: actions/checkout@v1
       - name: update password in manifest.yml
-        run: sed -i -e "s#{{DEFAULT_PASSWORD}}#${{ secrets.DEFAULT_PASSWORD }}#g" .kubernetes/manifest.yaml
-      - uses: danielr1996/kubectl-action@1.0.0
-        name: apply config
+        run: sed -i -e "s#__PASSWORD__#${{ secrets.DEFAULT_PASSWORD }}#g" values.yaml
+      - name: install helm chart
+        uses: WyriHaximus/github-action-helm3@v2
         with:
-          kubeconfig: ${{ secrets.KUBECONFIG }}
-          args: apply -f .kubernetes/manifest.yaml
+          exec: helm install mealie . --install --namespace=recipes --atomic
+          kubeconfig: ${{ secrets.KUBECONFIG_RAW }}
