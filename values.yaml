@@ -7,7 +7,7 @@ deployment:
   revisionHistoryLimit: 1
   replicas: 1
   labels:
-    app: backend
+    app: mealie
   ports:
     - 80
   requests:
@@ -37,3 +37,14 @@ configmap:
   email: mealie@carstens.tech
   timezone: Europe/Zurich
   tokenTime: 168
+
+service:
+  name: mealie
+  port: 80
+  targetPort: 80
+  appSelector: mealie
+ingress:
+  host: torbens.recipes
+  secret: tls-mealie
+  issuer: letsencrypt-issuer-http
+  name: mealie
