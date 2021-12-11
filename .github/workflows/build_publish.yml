@@ -16,5 +16,5 @@ jobs:
       - name: install helm chart
         uses: WyriHaximus/github-action-helm3@v2
         with:
-          exec: helm install mealie . --install --namespace=recipes --atomic
+          exec: helm upgrade mealie . --install --namespace=recipes --atomic
           kubeconfig: ${{ secrets.KUBECONFIG_RAW }}
