@@ -4,7 +4,7 @@ metadata:
   name: {{ .Values.secret.name }}
   namespace: {{ .Values.namespace }}
 data:
-  DEFAULT_PASSWORD: {{ .Values.secret.password }}
+  DEFAULT_PASSWORD: "{{ .Values.secret.password }}"
 ---
 apiVersion: v1
 kind: ConfigMap
@@ -12,6 +12,6 @@ metadata:
   name: {{ .Values.configmap.name }}
   namespace: {{ .Values.namespace }}
 data:
-  DEFAULT_EMAIL: {{ .Values.configmap.email }}
-  TZ: {{ .Values.configmap.timezone }}
-  TOKEN_TIME: {{ .Values.configmap.tokenTime }}
+  DEFAULT_EMAIL: "{{ .Values.configmap.email }}"
+  TZ: "{{ .Values.configmap.timezone }}"
+  TOKEN_TIME: "{{ .Values.configmap.tokenTime }}"
