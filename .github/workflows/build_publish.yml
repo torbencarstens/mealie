@@ -10,7 +10,7 @@ jobs:
     name: "Publish to k8s"
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v1
+      - uses: actions/checkout@v3
       - name: update password in manifest.yml
         run: sed -i -e "s#__PASSWORD__#${{ secrets.DEFAULT_PASSWORD }}#g" values.yaml
       - name: install helm chart
